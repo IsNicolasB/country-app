@@ -1,1 +1,19 @@
-<p>country-page works!</p>,
+@if (countryResource.error()) {
+<app-not-found></app-not-found>
+}
+
+<!--  -->
+@if (countryResource.isLoading()) {
+    <div class="alert alert-info mt-4 flex flex-col items-center justify-center">
+        <span class="loading-spinner"></span>
+        <h3 class="text-3xl">Cargando Paises ...</h3>
+    </div>
+}
+
+<!--  -->
+@if (countryResource.hasValue()) {
+    <country-information-page
+    [country]="countryResource!.value()"
+    class="flex flex-col items-center justify-center mt-10"
+    />
+}

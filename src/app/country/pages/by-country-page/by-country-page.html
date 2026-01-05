@@ -1,2 +1,14 @@
-<country-search-input placeholder="Buscar por Capital de mi pais"></country-search-input>
-<country-list></country-list>
+<country-search-input
+placeholder="Buscar por Nombre de la Capital"
+(value)="query.set($event)"
+[initialValue]="queryParam"
+/>
+
+<country-list 
+[errorMessage]="countryResource.error()"
+[isLoading]="countryResource.isLoading()"
+[isEmpty]="countryResource.error() ? false : countryResource.value()?.length === 0"
+  [countries]="countryResource.error() ? [] : (countryResource.value() ?? [])"
+/>
+
+

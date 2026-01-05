@@ -1,0 +1,80 @@
+<section class="stats shadow w-full overflow-auto snap-x snap-proximity">
+    <div class="stat snap-center ">
+        <div class="stat-figure text-secondary">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                class="inline-block h-8 w-8 stroke-current">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+        </div>
+        <div class="stat-title">Población</div>
+        <div class="stat-value">{{country().population}}</div>
+        <div class="stat-desc">{{currentYear()}}</div>
+    </div>
+
+    <div class="stat snap-center ">
+        <div class="stat-figure text-secondary">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                class="inline-block h-8 w-8 stroke-current">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4">
+                </path>
+            </svg>
+        </div>
+        <div class="stat-title">Nombre</div>
+        <div class="stat-value">{{country().name}}</div>
+        <div class="stat-desc">{{country().region}}</div>
+    </div>
+
+    <div class="stat snap-center ">
+        <div class="stat-figure text-secondary">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                class="inline-block h-8 w-8 stroke-current">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path>
+            </svg>
+        </div>
+        <div class="stat-title">Subregion</div>
+        <div class="stat-value">{{country().subRegion}}</div>
+        <div class="stat-desc">{{country().region}}</div>
+    </div>
+
+    <div class="stat snap-center ">
+        <div class="stat-figure text-secondary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4 21v-5.313m0 0c5.818-4.55 10.182 4.55 16 0V4.313c-5.818 4.55-10.182-4.55-16 0z" />
+            </svg>
+        </div>
+        <div class="stat-title">Bandera</div>
+        <div class="stat-value"><img class="w-50 h-30 rounded-2xl" src="{{country().flagSvg}}" alt="{{country().name}} Flag"></div>
+        <div class="stat-desc">{{country().name}}</div>
+    </div>
+</section>
+
+<section class="diff aspect-video mt-10 w-200 rounded-2xl" tabindex="0" #diffSection>
+    <div class="diff-item-1 " role="img" tabindex="0">
+        <img class="blur-sm" [alt]="country().name + ' Flag'" [src]="country().flagSvg" />
+    </div>
+    <div class="diff-item-2" role="img">
+        <img [alt]="country().name + ' Flag'" [src]="country().flagSvg" />
+    </div>
+    <div class="diff-resizer" [class]="isAnimation() ? 'transition-all duration-1000 ease-in-out' : ''"
+        [style.width]="width()"></div>
+</section>
+
+<section class="hover-3d">
+    <!-- content -->
+    <figure class="w-full rounded-2xl">
+        <img [alt]="country().name + ' Flag'" [src]="country().flagSvg" />
+    </figure>
+    <!-- 8 empty divs needed for the 3D effect -->
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</section>

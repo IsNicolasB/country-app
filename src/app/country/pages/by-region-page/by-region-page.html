@@ -1,1 +1,22 @@
-<country-list></country-list>
+<h1 class="text-2xl">Por sección</h1>
+<h3 class="text-lg">Seleccione una región</h3>
+
+<section class="overflow-x-auto">
+    <div class=" grid md:grid-cols-6 grid-cols-3 gap-4 gap-min-2 my-10 min-w-100 ">
+        @for (region of regions; track $index) {
+            <button 
+                class="btn btn-accent w-full min-w-24"
+                (click)="selectedRegion.set(region)"
+                [class.btn-primary]="region === selectedRegion()"
+                >
+                {{region}}
+            </button>
+        }
+    </div>
+    
+</section>
+<!--  -->
+<country-list 
+[errorMessage]="countryResource.error()" [isLoading]="countryResource.isLoading()"
+    [isEmpty]="countryResource.error() ? false : countryResource.value()?.length === 0"
+    [countries]="countryResource.error() ? [] : (countryResource.value() ?? [])" />

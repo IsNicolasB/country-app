@@ -1,4 +1,4 @@
-<section class="mt-5">
+<section class="mt-5 overflow-x-auto">
     <table class="table table-md mt-2 w-full">
         <thead>
             <tr>
@@ -8,17 +8,63 @@
                 <th>Nombre</th>
                 <th>Capital</th>
                 <th>Población</th>
+                <th>Contenido</th>
             </tr>
         </thead>
         <tbody>
+            @for (country of countries(); track country.cca2; let index = $index) {
             <tr>
-                <th>#</th>
-                <th>Ícono</th>
-                <th>Bandera</th>
-                <th>Nombre</th>
-                <th>Capital</th>
-                <th>Población</th>
+                <td>{{index + 1}}</td>
+                <td>{{country.flag}}</td>
+                <td>
+                    <img [src]="country.flagSvg" [alt]="country.name" class="w-10">
+                </td>
+                <td>{{country.name}}</td>
+                <td>{{country.capital}}</td>
+                <td>
+                    <span class="badge badge-secondary">
+                        {{country.population | number}} 
+                    </span>
+                </td>
+                <td>
+                    <a [routerLink]="['/country/by',country.cca2]" class="link-primary cursor-pointer">Más Informacion...</a>
+                </td>
             </tr>
+            }
+
+           <!--  -->
+            @if (errorMessage()) {
+            <tr>
+                <td colspan="8" class="text-center" >
+                    <div class="alert alert-danger mt-4">
+                        {{errorMessage()}}
+                    </div>
+                </td>
+            </tr>
+           } 
+
+           <!--  -->
+           @if (isEmpty() && !isLoading()) {
+            <tr>
+                <td colspan="8" class="text-center" >
+                    <div class="alert alert-warning mt-4">
+                        No se encontraron resultados.
+                    </div>
+                </td>
+            </tr>
+           } 
+
+           <!--  -->
+           @if (isLoading()) {
+            <tr>
+                <td colspan="8" class="text-center" >
+                    <div class="alert alert-info mt-4">
+                        Cargando Paises ...
+                    </div>
+                </td>
+            </tr>
+           } 
+
         </tbody>
     </table>
 
